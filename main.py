@@ -42,20 +42,21 @@ output = []
 out_empty = [0 for _ in range(len(labels))]  
 
 for x, doc in enumerate(docs_x):
-    bag = []
+    bag = []  
 
-    pattern_words = [stemmer.stem(w) for w in doc]
+    pattern_words = [stemmer.stem(w) for w in doc] # stem all words that are in patterns  
 
     for w in words:
-        if w in pattern_words:
-            bag.append(1)
+        if w in pattern_words: # if words exists in the current pattern that we are looping through
+            bag.append(1) # the word exists so we place a 1 , no matter how many times it exists
         else:
-            bag.append(0)
-    output_row = out_empty[:]
-    output_row[labels.index(docs_y[x])] = 1
+            bag.append(0) # the word is not there so we place a 0
 
-    training.append(bag)
+    output_row = out_empty[:] 
+    output_row[labels.index(docs_y[x])] = 1  # look through labels list & check where the tag is in that list then set that value to 1 in output row
+                                            
+    training.append(bag) 
     output.append(output_row)
 
-training = numpy.array(training)
+training = numpy.array(training) 
 output = np.array(output)

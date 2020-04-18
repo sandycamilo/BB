@@ -11,17 +11,18 @@ import json
 with open("intents.json") as file:
     data = json.load(file)
 
-print(data)
+# print(data["intents"])
 
 words = []
 labels = []
 docs = []
 
-for intent in data["intents"]:
-    for pattern in intent["patterns"]:
-        wrds = nltk.word_tokenize(pattern)
-        words.extend(wrds)
-        docs.append(pattern)
+for intent in data["intents"]: # loops through every intent(dictionary) in intents 
+    for pattern in intent["patterns"]: # access dictionary in intent and gets 'patterns'
+        wrds = nltk.word_tokenize(pattern) # gets every word in patterns- returns a list with all different words in it
+        words.extend(wrds) # places all tokenized words into words list by extending the list 'wrds' to words
+        docs.append(pattern) # adds pattern to docs []
 
-    if intent["tag"] not in labels:
+    # get all tags in intent
+    if intent["tag"] not in labels: 
         labels.append(intent["tag"])

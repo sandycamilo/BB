@@ -98,7 +98,7 @@ def bag_of_words(sentence, list_words):
     for word_in_sentence in s_words:
         for i, w i enumerate(words):
             if w == word_in_sentence:
-                bag[i].append(1)
+                bag[i] = 1 
 
     return numpy.array(bag)
 
@@ -110,4 +110,12 @@ def chat():
             break
         
         results = model.predict([bag_of_words(inp, words)])
-        
+        results_index = numpy.argmax(results)
+        tag = labels[results_index]
+        # print(tag)
+
+        for tg in data["intents"]
+            if tg['tag'] == tag:
+                responses = tg['responses']
+        print(random.choice(responses))
+chat()

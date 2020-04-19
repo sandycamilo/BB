@@ -89,3 +89,25 @@ try:
 except:
 model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
 model.save("model.tflearn")
+
+def bag_of_words(sentence, list_words):
+    bag = [0 for _ in range(len(words))]
+    s_words = nltk.word_tokenize(sentence)
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
+
+    for word_in_sentence in s_words:
+        for i, w i enumerate(words):
+            if w == word_in_sentence:
+                bag[i].append(1)
+
+    return numpy.array(bag)
+
+def chat():
+    print("Hello! (type quit to stop)")
+    while True:
+        inp = input("You: ") # user input
+        if inp.lower() == "quit":
+            break
+        
+        results = model.predict([bag_of_words(inp, words)])
+        
